@@ -428,6 +428,10 @@ var TerryCharts = /*#__PURE__*/function () {
 
     classCallCheck(this, TerryCharts);
 
+    if (typeof dom === 'string') {
+      dom = document.querySelectorAll(dom);
+    }
+
     this.dom = dom; // this.id = uuidv4();
 
     this.options = opts;
