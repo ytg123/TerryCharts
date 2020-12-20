@@ -1,8 +1,12 @@
 // import { v4 as uuidv4 } from 'uuid';
-import Line from '../graphic/line.js'
-import Rect from '../graphic/rect.js'
-import Circle from '../graphic/circle.js'
-import BezierCurve from '../graphic/bezierCurve.js'
+import {
+  Line,
+  Rect,
+  Circle,
+  BezierCurve,
+  Star,
+  Rose
+} from '../graphic/index.js'
 class TerryCharts {
   constructor(dom, opts = {}) {
     this.dom = dom;
@@ -34,6 +38,14 @@ class TerryCharts {
 
   bezierCurve () {
     new BezierCurve(this.ctx, this.options)
+  }
+
+  star () {
+    new Star(this.ctx, this.options)
+  }
+
+  rose () {
+    new Rose(this.ctx, this.options)
   }
 }
 

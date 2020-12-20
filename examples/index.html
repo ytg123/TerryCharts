@@ -69,21 +69,51 @@
     // }
     // TerryCharts.init(dom, options).circle()
     //三维曲线
+    // let options = {
+    //   shape: {
+    //     cx1: 5,
+    //     cy1: 60,
+    //     cx2: 65,
+    //     cy2: 60,
+    //     x: 30,
+    //     y: 30
+    //   },
+    //   style: {
+    //     stroke: '#f50',
+    //     fill: 'pink'
+    //   }
+    // }
+    // TerryCharts.init(dom, options).bezierCurve()  
+    //star  cx cy 圆心坐标 n 几星 r 半径 r0 内半径
+    // let options = {
+    //   shape: {
+    //     cx: 40,
+    //     cy: 40,
+    //     n: 5,
+    //     r: 20,
+    //     r0: 15
+    //   },
+    //   style: {
+    //     stroke: '#f50',
+    //     fill: 'pink'
+    //   }
+    // }
+    // TerryCharts.init(dom, options).star() 
+    //rose cx cy 圆心坐标 r 半径  k 玫瑰线参数 n 花瓣数
     let options = {
       shape: {
-        cx1: 5,
-        cy1: 60,
-        cx2: 65,
-        cy2: 60,
-        x: 30,
-        y: 30
+        cx: 40,
+        cy: 40,
+        r: [3, 6, 9, 12, 15, 18, 21],
+        k: 1,
+        n: 5
       },
       style: {
         stroke: '#f50',
-        fill: 'pink'
+        fill: 'orange'
       }
     }
-    TerryCharts.init(dom, options).bezierCurve()  
+    TerryCharts.init(dom, options).rose()
   </script>
 </body>
 

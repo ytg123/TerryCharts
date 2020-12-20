@@ -82,6 +82,80 @@
     ctx.stroke();
   };
 
+  var PI = Math.PI;
+  var cos = Math.cos;
+  var sin = Math.sin;
+
+  var Star = function Star(ctx, opts) {
+    classCallCheck(this, Star);
+
+    this.options = opts || {};
+    var n = this.options.shape.n;
+    if (!n || n < 2) return;
+    var x = this.options.shape.cx;
+    var y = this.options.shape.cy;
+    var r = this.options.shape.r;
+    var r0 = this.options.shape.r0;
+
+    if (r0 == null) {
+      r0 = n > 4 ? r * cos(2 * PI / n) / cos(PI / n) : r / 3;
+    }
+
+    var dStep = PI / n;
+    var deg = -PI / 2;
+    var xStart = x + r * cos(deg);
+    var yStart = y + r * sin(deg);
+    deg += dStep;
+    ctx.moveTo(xStart, yStart);
+
+    for (var i = 0, end = n * 2 - 1, ri; i < end; i++) {
+      ri = i % 2 === 0 ? r0 : r;
+      ctx.lineTo(x + ri * cos(deg), y + ri * sin(deg));
+      deg += dStep;
+    }
+
+    ctx.closePath();
+    ctx.fillStyle = this.options.style ? this.options.style.fill : '';
+    ctx.strokeStyle = this.options.style.stroke ? this.options.style.stroke : '';
+    this.options.style && ctx.fill();
+    ctx.stroke();
+  };
+
+  var sin$1 = Math.sin;
+  var cos$1 = Math.cos;
+  var radian = Math.PI / 180;
+
+  var Rose = function Rose(ctx, opts) {
+    classCallCheck(this, Rose);
+
+    this.options = opts || {};
+    var shape = this.options.shape;
+    var R = shape.r;
+    var k = shape.k;
+    var n = shape.n;
+    var x0 = shape.cx;
+    var y0 = shape.cy;
+    var x;
+    var y;
+    var r;
+    ctx.moveTo(x0, y0);
+
+    for (var i = 0, len = R.length; i < len; i++) {
+      r = R[i];
+
+      for (var j = 0; j <= 360 * n; j++) {
+        x = r * sin$1(k / n * j % 360 * radian) * cos$1(j * radian) + x0;
+        y = r * sin$1(k / n * j % 360 * radian) * sin$1(j * radian) + y0;
+        ctx.lineTo(x, y);
+      }
+    }
+
+    ctx.fillStyle = this.options.style ? this.options.style.fill : '';
+    ctx.strokeStyle = this.options.style.stroke ? this.options.style.stroke : '';
+    this.options.style && ctx.fill();
+    ctx.stroke();
+  };
+
   var TerryCharts = /*#__PURE__*/function () {
     function TerryCharts(dom) {
       var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -121,6 +195,16 @@
       key: "bezierCurve",
       value: function bezierCurve() {
         new BezierCurve(this.ctx, this.options);
+      }
+    }, {
+      key: "star",
+      value: function star() {
+        new Star(this.ctx, this.options);
+      }
+    }, {
+      key: "rose",
+      value: function rose() {
+        new Rose(this.ctx, this.options);
       }
     }]);
 
