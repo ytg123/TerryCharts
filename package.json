@@ -1,0 +1,39 @@
+{
+  "name": "terry-charts",
+  "version": "1.0.0",
+  "description": "A framework for building Web visualization",
+  "scripts": {
+    "dev": "rollup -wc rollup.config.dev.js",
+    "build": "rollup -c rollup.config.dev.js",
+    "build:prod": "rollup -c rollup.config.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ytg123/TerryCharts.git"
+  },
+  "keywords": [
+    "charts"
+  ],
+  "author": "Terry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ytg123/TerryCharts/issues"
+  },
+  "homepage": "https://github.com/ytg123/TerryCharts#readme",
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "jest": "^26.6.3",
+    "rollup": "^2.35.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

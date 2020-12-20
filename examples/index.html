@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerryCharts</title>
+  <script src="../dist/terry.charts.umd.js"></script>
+  <style>
+    #box {
+      width: 500px;
+      height: 500px;
+      margin: 30px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+    let dom = document.getElementById('box')
+    //line
+    // let options = {
+    //   width: 500,
+    //   height: 500,
+    //   shape: {
+    //     x1: 10,
+    //     y1: 10,
+    //     x2: 70,
+    //     y2: 70,
+    //     cap: 'square',
+    //     width: 5
+    //   },
+    //   style: {
+    //     // stroke: '#f50',
+    //     fill: 'pink'
+    //   }
+    // }
+    // TerryCharts.init(dom, options).line()
+    //rect
+    // let options = {
+    //   width: 500,
+    //   height: 500,
+    //   shape: {
+    //     x: 20,
+    //     y: 20,
+    //     width: 100,
+    //     height: 100
+    //   },
+    //   style: {
+    //     stroke: '#f50',
+    //     fill: 'pink'
+    //   }
+    // }
+    // TerryCharts.init(dom, options).rect()
+    //circle
+    // let options = {
+    //   shape: {
+    //     x: 50,
+    //     y: 50,
+    //     r: 30,
+    //     startAngle: 0,
+    //     endAngle: 2 * Math.PI
+    //   },
+    //   style: {
+    //     stroke: '#f50',
+    //     fill: 'pink'
+    //   }
+    // }
+    // TerryCharts.init(dom, options).circle()
+    //三维曲线
+    let options = {
+      shape: {
+        cx1: 5,
+        cy1: 60,
+        cx2: 65,
+        cy2: 60,
+        x: 30,
+        y: 30
+      },
+      style: {
+        stroke: '#f50',
+        fill: 'pink'
+      }
+    }
+    TerryCharts.init(dom, options).bezierCurve()  
+  </script>
+</body>
+
+</html>
