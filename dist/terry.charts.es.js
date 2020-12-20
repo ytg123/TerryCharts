@@ -39,14 +39,14 @@ var Line = function Line(ctx, opts) {
   ctx.lineCap = this.options.shape.cap;
   ctx.lineWidth = this.options.shape.width;
   ctx.lineTo(this.x2, this.y2);
-  ctx.font = this.options.text.font;
-  ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
-  ctx.shadowColor = this.options.style.shadow;
-  ctx.shadowBlur = this.options.style.shadowBlur;
+  ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
+  this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
+  ctx.shadowColor = this.options.style.shadow || 'transparent';
+  ctx.shadowBlur = this.options.style.shadowBlur || 0;
   ctx.shadowOffsetX = this.options.style.shadowX || 0;
   ctx.shadowOffsetY = this.options.style.shadowY || 0;
 
-  if (this.options.animate.show) {
+  if (this.options.animate && this.options.animate.show) {
     ctx.scale(this.options.animate.scale.x || 1, this.options.animate.scale.y || 1);
     ctx.translate(this.options.animate.translate.x || 0, this.options.animate.translate.y || 0);
   }
@@ -62,14 +62,14 @@ var Rect = function Rect(ctx, opts) {
 
   this.options = opts || {};
   ctx.rect(this.options.shape.x, this.options.shape.y, this.options.shape.width, this.options.shape.height);
-  ctx.font = this.options.text.font;
-  ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
-  ctx.shadowColor = this.options.style.shadow;
-  ctx.shadowBlur = this.options.style.shadowBlur;
+  ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
+  this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
+  ctx.shadowColor = this.options.style.shadow || 'transparent';
+  ctx.shadowBlur = this.options.style.shadowBlur || 0;
   ctx.shadowOffsetX = this.options.style.shadowX || 0;
   ctx.shadowOffsetY = this.options.style.shadowY || 0;
 
-  if (this.options.animate.show) {
+  if (this.options.animate && this.options.animate.show) {
     ctx.scale(this.options.animate.scale.x || 1, this.options.animate.scale.y || 1);
     ctx.translate(this.options.animate.translate.x || 0, this.options.animate.translate.y || 0);
   }
@@ -85,14 +85,14 @@ var Circle = function Circle(ctx, opts) {
 
   this.options = opts || {};
   ctx.arc(this.options.shape.x, this.options.shape.y, this.options.shape.r, this.options.shape.startAngle, this.options.shape.endAngle, this.options.shape.clockwise);
-  ctx.font = this.options.text.font;
-  ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
-  ctx.shadowColor = this.options.style.shadow;
-  ctx.shadowBlur = this.options.style.shadowBlur;
+  ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
+  this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
+  ctx.shadowColor = this.options.style.shadow || 'transparent';
+  ctx.shadowBlur = this.options.style.shadowBlur || 0;
   ctx.shadowOffsetX = this.options.style.shadowX || 0;
   ctx.shadowOffsetY = this.options.style.shadowY || 0;
 
-  if (this.options.animate.show) {
+  if (this.options.animate && this.options.animate.show) {
     ctx.scale(this.options.animate.scale.x || 1, this.options.animate.scale.y || 1);
     ctx.translate(this.options.animate.translate.x || 0, this.options.animate.translate.y || 0);
   }
@@ -108,14 +108,14 @@ var BezierCurve = function BezierCurve(ctx, opts) {
 
   this.options = opts || {};
   ctx.bezierCurveTo(this.options.shape.cx1, this.options.shape.cy1, this.options.shape.cx2, this.options.shape.cy2, this.options.shape.x, this.options.shape.y);
-  ctx.font = this.options.text.font;
-  ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
-  ctx.shadowColor = this.options.style.shadow;
-  ctx.shadowBlur = this.options.style.shadowBlur;
+  ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
+  this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
+  ctx.shadowColor = this.options.style.shadow || 'transparent';
+  ctx.shadowBlur = this.options.style.shadowBlur || 0;
   ctx.shadowOffsetX = this.options.style.shadowX || 0;
   ctx.shadowOffsetY = this.options.style.shadowY || 0;
 
-  if (this.options.animate.show) {
+  if (this.options.animate && this.options.animate.show) {
     ctx.scale(this.options.animate.scale.x || 1, this.options.animate.scale.y || 1);
     ctx.translate(this.options.animate.translate.x || 0, this.options.animate.translate.y || 0);
   }
@@ -159,14 +159,14 @@ var Star = function Star(ctx, opts) {
   }
 
   ctx.closePath();
-  ctx.font = this.options.text.font;
-  ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
-  ctx.shadowColor = this.options.style.shadow;
-  ctx.shadowBlur = this.options.style.shadowBlur;
+  ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
+  this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
+  ctx.shadowColor = this.options.style.shadow || 'transparent';
+  ctx.shadowBlur = this.options.style.shadowBlur || 0;
   ctx.shadowOffsetX = this.options.style.shadowX || 0;
   ctx.shadowOffsetY = this.options.style.shadowY || 0;
 
-  if (this.options.animate.show) {
+  if (this.options.animate && this.options.animate.show) {
     ctx.scale(this.options.animate.scale.x || 1, this.options.animate.scale.y || 1);
     ctx.translate(this.options.animate.translate.x || 0, this.options.animate.translate.y || 0);
   }
@@ -206,14 +206,14 @@ var Rose = function Rose(ctx, opts) {
     }
   }
 
-  ctx.font = this.options.text.font;
-  ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
-  ctx.shadowColor = this.options.style.shadow;
-  ctx.shadowBlur = this.options.style.shadowBlur;
+  ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
+  this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
+  ctx.shadowColor = this.options.style.shadow || 'transparent';
+  ctx.shadowBlur = this.options.style.shadowBlur || 0;
   ctx.shadowOffsetX = this.options.style.shadowX || 0;
   ctx.shadowOffsetY = this.options.style.shadowY || 0;
 
-  if (this.options.animate.show) {
+  if (this.options.animate && this.options.animate.show) {
     ctx.scale(this.options.animate.scale.x || 1, this.options.animate.scale.y || 1);
     ctx.translate(this.options.animate.translate.x || 0, this.options.animate.translate.y || 0);
   }
@@ -472,14 +472,14 @@ var Sector = function Sector(ctx, opts) {
   this.options = opts || {};
   var shape = this.options.shape;
   buildPath(ctx, shape);
-  ctx.font = this.options.text.font;
-  ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
-  ctx.shadowColor = this.options.style.shadow;
-  ctx.shadowBlur = this.options.style.shadowBlur;
+  ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
+  this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
+  ctx.shadowColor = this.options.style.shadow || 'transparent';
+  ctx.shadowBlur = this.options.style.shadowBlur || 0;
   ctx.shadowOffsetX = this.options.style.shadowX || 0;
   ctx.shadowOffsetY = this.options.style.shadowY || 0;
 
-  if (this.options.animate.show) {
+  if (this.options.animate && this.options.animate.show) {
     ctx.scale(this.options.animate.scale.x || 1, this.options.animate.scale.y || 1);
     ctx.translate(this.options.animate.translate.x || 0, this.options.animate.translate.y || 0);
   }
@@ -502,14 +502,14 @@ var Heart = function Heart(ctx, opts) {
   ctx.moveTo(x, y);
   ctx.bezierCurveTo(x + a / 2, y - b * 2 / 3, x + a * 2, y + b / 3, x, y + b);
   ctx.bezierCurveTo(x - a * 2, y + b / 3, x - a / 2, y - b * 2 / 3, x, y);
-  ctx.font = this.options.text.font;
-  ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
-  ctx.shadowColor = this.options.style.shadow;
-  ctx.shadowBlur = this.options.style.shadowBlur;
+  ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
+  this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
+  ctx.shadowColor = this.options.style.shadow || 'transparent';
+  ctx.shadowBlur = this.options.style.shadowBlur || 0;
   ctx.shadowOffsetX = this.options.style.shadowX || 0;
   ctx.shadowOffsetY = this.options.style.shadowY || 0;
 
-  if (this.options.animate.show) {
+  if (this.options.animate && this.options.animate.show) {
     ctx.scale(this.options.animate.scale.x || 1, this.options.animate.scale.y || 1);
     ctx.translate(this.options.animate.translate.x || 0, this.options.animate.translate.y || 0);
   }
