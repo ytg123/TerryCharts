@@ -1,4 +1,4 @@
-// import { v4 as uuidv4 } from 'uuid';
+
 import {
   Line,
   Rect,
@@ -9,14 +9,34 @@ import {
   Sector,
   Heart
 } from '../graphic/index.js'
+import { v4 as uuidv4 } from 'uuid'
 class TerryCharts {
   constructor(dom, opts = {}) {
 
     if (typeof dom === 'string') {
       dom = document.querySelector(dom)
     }
-    this.dom = dom;
-    // this.id = uuidv4();
+    this.dom = dom
+    this.id = `tchart${uuidv4({
+      random: [
+        0x10,
+        0x91,
+        0x56,
+        0xbe,
+        0xc4,
+        0xfb,
+        0xc1,
+        0xea,
+        0x71,
+        0xb4,
+        0xef,
+        0xe1,
+        0x67,
+        0x1c,
+        0x58,
+        0x36,
+      ],
+    })}`
     this.options = opts
     let rendererType = opts.rednerer || 'canvas';
 
@@ -60,9 +80,20 @@ class TerryCharts {
   heart () {
     new Heart(this.ctx, this.options)
   }
+
+  dispose () {
+    delInstance(this.id)
+  }
+}
+
+const instances = {}
+function delInstance (id) {
+  delete instances[id]
 }
 
 export function init (dom, opts) {
   const instance = new TerryCharts(dom, opts)
+  console.log(instance.id)
+  instances[instance.id] = instance
   return instance
 }
