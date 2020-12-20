@@ -429,7 +429,7 @@ var TerryCharts = /*#__PURE__*/function () {
     classCallCheck(this, TerryCharts);
 
     if (typeof dom === 'string') {
-      dom = document.querySelectorAll(dom);
+      dom = document.querySelector(dom);
     }
 
     this.dom = dom; // this.id = uuidv4();
