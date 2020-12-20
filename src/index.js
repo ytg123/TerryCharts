@@ -93,7 +93,6 @@ function delInstance (id) {
 
 export function init (dom, opts) {
   const instance = new TerryCharts(dom, opts)
-  console.log(instance.id)
   instances[instance.id] = instance
   return instance
 }
