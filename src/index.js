@@ -5,7 +5,9 @@ import {
   Circle,
   BezierCurve,
   Star,
-  Rose
+  Rose,
+  Sector,
+  Heart
 } from '../graphic/index.js'
 class TerryCharts {
   constructor(dom, opts = {}) {
@@ -46,6 +48,13 @@ class TerryCharts {
 
   rose () {
     new Rose(this.ctx, this.options)
+  }
+
+  sector () {
+    new Sector(this.ctx, this.options)
+  }
+  heart () {
+    new Heart(this.ctx, this.options)
   }
 }
 
