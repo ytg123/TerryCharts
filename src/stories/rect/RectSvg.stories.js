@@ -12,6 +12,8 @@ export const RectSvg = Template.bind({});
 RectSvg.args = {
   name: 'rect',
   rednerer: 'svg',
+  width: 200,
+  height: 100,
   x: 0,
   y: 0,
   rx: 40,
