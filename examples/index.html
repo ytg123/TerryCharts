@@ -24,16 +24,47 @@
     //   width: 500,
     //   height: 500,
     //   shape: {
-    //     x1: 10,
-    //     y1: 10,
-    //     x2: 70,
-    //     y2: 70,
-    //     cap: 'square',
-    //     width: 5
+    //     // x1: 10,
+    //     // y1: 10,
+    //     // x2: 70,
+    //     // y2: 70,
+    //     cap: 'circle',
+    //     width: 3
     //   },
     //   style: {
-    //     // stroke: '#f50',
-    //     fill: 'pink'
+    //     stroke: '#f50',
+    //     fill: 'transparent'
+    //   },
+    //   data: [
+    //     {
+    //       x: 0,
+    //       y: 10
+    //     },
+    //     {
+    //       x: 120,
+    //       y: 20
+    //     },
+    //     {
+    //       x: 30,
+    //       y: 30
+    //     }, {
+    //       x: 60,
+    //       y: 100
+    //     }, {
+    //       x: 90,
+    //       y: 120
+    //     }
+    //   ],
+    //   animate: {
+    //     show: true,
+    //     rotate: 10,
+    //     scale: {
+    //       x: 2,
+    //       y: 2
+    //     },
+    //     translate: {
+    //       x: 30, y: 100
+    //     }
     //   }
     // }
     // TerryCharts.init(dom, options).line()
@@ -54,20 +85,20 @@
     // }
     // TerryCharts.init(dom, options).rect()
     //circle
-    let options = {
-      shape: {
-        x: 50,
-        y: 50,
-        r: 30,
-        startAngle: 0,
-        endAngle: 2 * Math.PI
-      },
-      style: {
-        stroke: '#f50',
-        fill: 'pink'
-      }
-    }
-    TerryCharts.init(dom, options).circle()
+    // let options = {
+    //   shape: {
+    //     x: 50,
+    //     y: 50,
+    //     r: 30,
+    //     startAngle: 0,
+    //     endAngle: 2 * Math.PI
+    //   },
+    //   style: {
+    //     stroke: '#f50',
+    //     fill: 'pink'
+    //   }
+    // }
+    // TerryCharts.init(dom, options).circle()
     //三维曲线
     // let options = {
     //   shape: {
@@ -84,21 +115,25 @@
     //   }
     // }
     // TerryCharts.init(dom, options).bezierCurve()  
-    //star  cx cy 圆心坐标 n 几星 r 半径 r0 内半径
-    // let options = {
-    //   shape: {
-    //     cx: 40,
-    //     cy: 40,
-    //     n: 5,
-    //     r: 20,
-    //     r0: 15
-    //   },
-    //   style: {
-    //     stroke: '#f50',
-    //     fill: 'pink'
-    //   }
-    // }
-    // TerryCharts.init(dom, options).star()
+    // star  cx cy 圆心坐标 n 几星 r 半径 r0 内半径
+    let options = {
+      shape: {
+        cx: 180,
+        cy: 40,
+        n: 5,
+        r: 20,
+        r0: 15
+      },
+      style: {
+        stroke: '#f50',
+        fill: 'pink'
+      },
+      animate: {
+        show: true,
+        rotate: 40
+      }
+    }
+    TerryCharts.init(dom, options).star()
     //rose cx cy 圆心坐标 r 半径  k 玫瑰线参数 n 花瓣数
     // let options = {
     //   shape: {
@@ -215,6 +250,18 @@
     // }
     // TerryCharts.init(dom, options1).heart()
 
+
+    //svg
+    // let options = {
+    //   name: 'rect',
+    //   rednerer: 'svg',
+    //   x: 0,
+    //   y: 0,
+    //   rx: 40,
+    //   ry: 40,
+    //   style: `fill:rgb(0,0,255);stroke-width:2;stroke:rgb(255,234,10);fill-opacity: 0.4;stroke-opacity: 0.3;opacity: 0.5;`
+    // }
+    // TerryCharts.init(dom, options)
   </script>
 </body>
 
