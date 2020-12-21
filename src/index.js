@@ -44,7 +44,14 @@ class TerryCharts {
       const canvas = document.createElement('canvas')
       canvas.width = opts.width || 400
       canvas.height = opts.height || 400
+      canvas.style.borderLeft = '1px solid #666'
+      canvas.style.borderBottom = '1px solid #666'
+      canvas.style.backgroundColor = 'gray'
       this.ctx = canvas.getContext('2d')
+      this.ctx.save();
+      this.ctx.translate(0, this.options.height || 400);
+      this.ctx.rotate(this._getRad(180));
+      this.ctx.scale(-1, 1);
       this.dom.appendChild(canvas)
     }
     if (rendererType === 'svg') {
@@ -65,7 +72,9 @@ class TerryCharts {
     }
 
   }
-
+  _getRad (degree) {
+    return degree / 180 * Math.PI;
+  }
   line () {
     new Line(this.ctx, this.options)
   }

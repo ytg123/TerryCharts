@@ -14,32 +14,15 @@ Line.args = {
   height: 500,
   shape: {
     cap: 'circle',
-    width: 3
+    joinType: 'round', //bevel round miter
+    width: 1
   },
   style: {
     stroke: '#f50',
     fill: 'transparent'
   },
-  data: [
-    {
-      x: 0,
-      y: 10
-    },
-    {
-      x: 120,
-      y: 20
-    },
-    {
-      x: 30,
-      y: 30
-    }, {
-      x: 60,
-      y: 100
-    }, {
-      x: 90,
-      y: 120
-    }
-  ],
+  xAxis: [0, 10, 20, 50, 80],
+  data: [0, 10, 60, 30, 80],
   text: {
     font: '20px 微软雅黑',
     txt: '北京',

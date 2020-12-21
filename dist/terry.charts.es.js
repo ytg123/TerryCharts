@@ -48,8 +48,9 @@ var Line = function Line(ctx, opts) {
     this.options.data.forEach(function (item, i) {
       // ctx.moveTo(item.x, item.y)
       ctx.lineCap = _this.options.shape.cap;
+      ctx.lineJoin = _this.options.shape.joinType;
       ctx.lineWidth = _this.options.shape.width;
-      ctx.lineTo(item.x, item.y);
+      ctx.lineTo(_this.options.xAxis[i], item);
     });
   }
 
@@ -66,6 +67,8 @@ var Line = function Line(ctx, opts) {
 };
 
 var Rect = function Rect(ctx, opts) {
+  var _this = this;
+
   classCallCheck(this, Rect);
 
   this.options = opts || {};
@@ -76,7 +79,15 @@ var Rect = function Rect(ctx, opts) {
     this.options.animate.rotate && ctx.rotate(this.options.animate.rotate * Math.PI / 180);
   }
 
-  ctx.rect(this.options.shape.x, this.options.shape.y, this.options.shape.width, this.options.shape.height);
+  if (this.options.data.length > 0) {
+    this.options.data.forEach(function (item, i) {
+      var x = _this.options.xAxis[i] + _this.options.shape.barCategoryGap * Math.floor(_this.options.shape.barWidth / _this.options.data.length) * i;
+      ctx.rect(x, 0, _this.options.shape.barWidth, item);
+      _this.options.label.show && ctx.fillText(item, x, item + 10, _this.options.shape.barWidth);
+      _this.options.label.show && (ctx.textAlign = _this.options.label.align);
+    });
+  }
+
   ctx.font = this.options.text ? this.options.text.font : '14px 微软雅黑 #666';
   this.options.text && ctx.fillText(this.options.text.txt, this.options.text.x, this.options.text.y, this.options.text.mw || 140);
   ctx.shadowColor = this.options.style.shadow || 'transparent';
@@ -87,6 +98,7 @@ var Rect = function Rect(ctx, opts) {
   ctx.strokeStyle = this.options.style.stroke ? this.options.style.stroke : '';
   this.options.style && ctx.fill();
   ctx.stroke();
+  ctx.restore();
 };
 
 var Circle = function Circle(ctx, opts) {
@@ -621,7 +633,14 @@ var TerryCharts = /*#__PURE__*/function () {
       var canvas = document.createElement('canvas');
       canvas.width = opts.width || 400;
       canvas.height = opts.height || 400;
+      canvas.style.borderLeft = '1px solid #666';
+      canvas.style.borderBottom = '1px solid #666';
+      canvas.style.backgroundColor = 'gray';
       this.ctx = canvas.getContext('2d');
+      this.ctx.save();
+      this.ctx.translate(0, this.options.height || 400);
+      this.ctx.rotate(this._getRad(180));
+      this.ctx.scale(-1, 1);
       this.dom.appendChild(canvas);
     }
 
@@ -643,6 +662,11 @@ var TerryCharts = /*#__PURE__*/function () {
   }
 
   createClass(TerryCharts, [{
+    key: "_getRad",
+    value: function _getRad(degree) {
+      return degree / 180 * Math.PI;
+    }
+  }, {
     key: "line",
     value: function line() {
       new Line(this.ctx, this.options);

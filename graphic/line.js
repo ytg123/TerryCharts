@@ -20,8 +20,9 @@ export default class Line {
       this.options.data.forEach((item, i) => {
         // ctx.moveTo(item.x, item.y)
         ctx.lineCap = this.options.shape.cap
+        ctx.lineJoin = this.options.shape.joinType
         ctx.lineWidth = this.options.shape.width
-        ctx.lineTo(item.x, item.y)
+        ctx.lineTo(this.options.xAxis[i], item)
       });
     }
 
