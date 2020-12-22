@@ -8,13 +8,14 @@ export default {
 const Template = (args) => {
   return createRect(args);
 };
-export const Rect = Template.bind({});
+export const Rectcanvas = Template.bind({});
 
 
-Rect.args = {
+Rectcanvas.args = {
   width: 500,
   height: 500,
   backgroundColor: '#f50',
+  rednerer: 'canvas',
   border: {
     borderWidth: 10,
     borderColor: '#999',
@@ -56,4 +57,16 @@ Rect.args = {
       x: 30, y: 10
     }
   }
+}
+export const Rectsvg = Template.bind({});
+Rectsvg.args = {
+  name: 'rect',
+  rednerer: 'svg',
+  width: 200,
+  height: 100,
+  x: 0,
+  y: 0,
+  rx: 40,
+  ry: 40,
+  style: `fill:rgb(0,0,255);stroke-width:2;stroke:rgb(255,234,10);fill-opacity: 0.4;stroke-opacity: 0.3;opacity: 0.5;`
 }

@@ -547,6 +547,36 @@ var Heart = function Heart(ctx, opts) {
   ctx.stroke();
 };
 
+var ReacSvg = function ReacSvg(dom, svgDom, opts) {
+  classCallCheck(this, ReacSvg);
+
+  this.options = opts || {};
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', this.options.name);
+  svg.setAttribute('width', this.options.width || 200);
+  svg.setAttribute('height', this.options.height || 200);
+  svg.setAttribute('style', this.options.style);
+  svg.setAttribute('x', this.options.x);
+  svg.setAttribute('y', this.options.y);
+  svg.setAttribute('rx', this.options.rx);
+  svg.setAttribute('ry', this.options.ry);
+  svgDom.appendChild(svg);
+  dom.appendChild(svgDom);
+};
+
+var LineSvg = function LineSvg(dom, svgDom, opts) {
+  classCallCheck(this, LineSvg);
+
+  this.options = opts || {};
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', this.options.name);
+  svg.setAttribute('x1', this.options.x1);
+  svg.setAttribute('y1', this.options.y1);
+  svg.setAttribute('x2', this.options.x2);
+  svg.setAttribute('y2', this.options.y2);
+  svg.setAttribute('style', this.options.style);
+  svgDom.appendChild(svg);
+  dom.appendChild(svgDom);
+};
+
 const rnds8Pool = new Uint8Array(256); // # of random values to pre-allocate
 
 let poolPtr = rnds8Pool.length;
@@ -627,9 +657,9 @@ var TerryCharts = /*#__PURE__*/function () {
       random: [0x10, 0x91, 0x56, 0xbe, 0xc4, 0xfb, 0xc1, 0xea, 0x71, 0xb4, 0xef, 0xe1, 0x67, 0x1c, 0x58, 0x36]
     }));
     this.options = opts;
-    var rendererType = opts.rednerer || 'canvas';
+    this.rendererType = opts.rednerer || 'canvas';
 
-    if (rendererType === 'canvas') {
+    if (this.rendererType === 'canvas') {
       var canvas = document.createElement('canvas');
       canvas.width = opts.width || 400;
       canvas.height = opts.height || 400;
@@ -644,20 +674,10 @@ var TerryCharts = /*#__PURE__*/function () {
       this.dom.appendChild(canvas);
     }
 
-    if (rendererType === 'svg') {
-      var svgDom = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      var svg = document.createElementNS('http://www.w3.org/2000/svg', this.options.name);
-      svgDom.setAttribute('width', this.options.width || 200);
-      svgDom.setAttribute('height', this.options.height || 200);
-      svg.setAttribute('width', this.options.width || 200);
-      svg.setAttribute('height', this.options.height || 200);
-      svg.setAttribute('style', this.options.style);
-      svg.setAttribute('x', this.options.x);
-      svg.setAttribute('y', this.options.y);
-      svg.setAttribute('rx', this.options.rx);
-      svg.setAttribute('ry', this.options.ry);
-      svgDom.appendChild(svg);
-      this.dom.appendChild(svgDom);
+    if (this.rendererType === 'svg') {
+      this.svgDom = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      this.svgDom.setAttribute('width', this.options.width || 200);
+      this.svgDom.setAttribute('height', this.options.height || 200);
     }
   }
 
@@ -669,12 +689,24 @@ var TerryCharts = /*#__PURE__*/function () {
   }, {
     key: "line",
     value: function line() {
-      new Line(this.ctx, this.options);
+      if (this.rendererType === 'canvas') {
+        new Line(this.ctx, this.options);
+      }
+
+      if (this.rendererType === 'svg') {
+        new LineSvg(this.dom, this.svgDom, this.options);
+      }
     }
   }, {
     key: "rect",
     value: function rect() {
-      new Rect(this.ctx, this.options);
+      if (this.rendererType === 'canvas') {
+        new Rect(this.ctx, this.options);
+      }
+
+      if (this.rendererType === 'svg') {
+        new ReacSvg(this.dom, this.svgDom, this.options);
+      }
     }
   }, {
     key: "circle",

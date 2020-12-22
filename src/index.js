@@ -7,7 +7,9 @@ import {
   Star,
   Rose,
   Sector,
-  Heart
+  Heart,
+  RectSvg,
+  LineSvg
 } from '../graphic/index.js'
 import { v4 as uuidv4 } from 'uuid'
 class TerryCharts {
@@ -38,9 +40,9 @@ class TerryCharts {
       ],
     })}`
     this.options = opts
-    let rendererType = opts.rednerer || 'canvas';
+    this.rendererType = opts.rednerer || 'canvas';
 
-    if (rendererType === 'canvas') {
+    if (this.rendererType === 'canvas') {
       const canvas = document.createElement('canvas')
       canvas.width = opts.width || 400
       canvas.height = opts.height || 400
@@ -54,21 +56,10 @@ class TerryCharts {
       this.ctx.scale(-1, 1);
       this.dom.appendChild(canvas)
     }
-    if (rendererType === 'svg') {
-      const svgDom = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', this.options.name)
-      svgDom.setAttribute('width', this.options.width || 200)
-      svgDom.setAttribute('height', this.options.height || 200)
-      svg.setAttribute('width', this.options.width || 200)
-      svg.setAttribute('height', this.options.height || 200)
-      svg.setAttribute('style', this.options.style)
-      svg.setAttribute('x', this.options.x)
-      svg.setAttribute('y', this.options.y)
-      svg.setAttribute('rx', this.options.rx)
-      svg.setAttribute('ry', this.options.ry)
-      svgDom.appendChild(svg)
-      this.dom.appendChild(svgDom)
-
+    if (this.rendererType === 'svg') {
+      this.svgDom = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+      this.svgDom.setAttribute('width', this.options.width || 200)
+      this.svgDom.setAttribute('height', this.options.height || 200)
     }
 
   }
@@ -76,11 +67,22 @@ class TerryCharts {
     return degree / 180 * Math.PI;
   }
   line () {
-    new Line(this.ctx, this.options)
+    if (this.rendererType === 'canvas') {
+      new Line(this.ctx, this.options)
+    }
+    if (this.rendererType === 'svg') {
+      new LineSvg(this.dom, this.svgDom, this.options)
+    }
   }
 
   rect () {
-    new Rect(this.ctx, this.options)
+    if (this.rendererType === 'canvas') {
+      new Rect(this.ctx, this.options)
+    }
+    if (this.rendererType === 'svg') {
+      new RectSvg(this.dom, this.svgDom, this.options)
+    }
+
   }
 
   circle () {

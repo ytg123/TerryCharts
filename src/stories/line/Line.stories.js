@@ -7,11 +7,12 @@ export default {
 const Template = (args) => {
   return createLine(args);
 };
-export const Line = Template.bind({});
+export const Linecanvas = Template.bind({});
 
-Line.args = {
+Linecanvas.args = {
   width: 500,
   height: 500,
+  rednerer: 'canvas',
   shape: {
     cap: 'circle',
     joinType: 'round', //bevel round miter
@@ -41,4 +42,15 @@ Line.args = {
       x: 30, y: 10
     }
   }
+}
+export const Linesvg = Template.bind({});
+
+Linesvg.args = {
+  name: 'line',
+  rednerer: 'svg',
+  x1: 30,
+  y1: 30,
+  x2: 90,
+  y2: 90,
+  style: 'stroke-width:2;stroke:rgb(255,24,10);stroke-opacity: 0.3;'
 }
