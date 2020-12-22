@@ -14,6 +14,12 @@ export const Rect = Template.bind({});
 Rect.args = {
   width: 500,
   height: 500,
+  // backgroundColor: '#f50',
+  border: {
+    borderWidth: 10,
+    borderColor: '#999',
+    borderType: 'dashed',
+  },
   shape: {
     // x: 20,
     // y: 20,
