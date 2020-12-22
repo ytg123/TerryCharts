@@ -44,8 +44,8 @@ class TerryCharts {
       const canvas = document.createElement('canvas')
       canvas.width = opts.width || 400
       canvas.height = opts.height || 400
-      canvas.style.borderLeft = `${this.options.border.borderWidth}px ${this.options.border.borderType} ${this.options.border.borderColor}`
-      canvas.style.borderBottom = `${this.options.border.borderWidth}px ${this.options.border.borderType} ${this.options.border.borderColor}`
+      canvas.style.borderLeft = this.options.border ? `${this.options.border.borderWidth}px ${this.options.border.borderType} ${this.options.border.borderColor}` : ''
+      canvas.style.borderBottom = this.options.border ? `${this.options.border.borderWidth}px ${this.options.border.borderType} ${this.options.border.borderColor}` : ''
       canvas.style.backgroundColor = this.options.backgroundColor || 'transparent'
       this.ctx = canvas.getContext('2d')
       this.ctx.save();

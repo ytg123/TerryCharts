@@ -641,8 +641,8 @@
         var canvas = document.createElement('canvas');
         canvas.width = opts.width || 400;
         canvas.height = opts.height || 400;
-        canvas.style.borderLeft = "".concat(this.options.border.borderWidth, "px ").concat(this.options.border.borderType, " ").concat(this.options.border.borderColor);
-        canvas.style.borderBottom = "".concat(this.options.border.borderWidth, "px ").concat(this.options.border.borderType, " ").concat(this.options.border.borderColor);
+        canvas.style.borderLeft = this.options.border ? "".concat(this.options.border.borderWidth, "px ").concat(this.options.border.borderType, " ").concat(this.options.border.borderColor) : '';
+        canvas.style.borderBottom = this.options.border ? "".concat(this.options.border.borderWidth, "px ").concat(this.options.border.borderType, " ").concat(this.options.border.borderColor) : '';
         canvas.style.backgroundColor = this.options.backgroundColor || 'transparent';
         this.ctx = canvas.getContext('2d');
         this.ctx.save();
