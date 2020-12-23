@@ -7,9 +7,10 @@ export default {
 const Template = (args) => {
   return createCircle(args);
 };
-export const Circle = Template.bind({});
+export const Circlecanvas = Template.bind({});
 
-Circle.args = {
+Circlecanvas.args = {
+  rednerer: 'canvas',
   shape: {
     x: 50,
     y: 50,
@@ -38,5 +39,19 @@ Circle.args = {
     translate: {
       x: 30, y: 10
     }
+  }
+}
+export const Circlesvg = Template.bind({});
+
+Circlesvg.args = {
+  name: 'circle',
+  rednerer: 'svg',
+  cx: 60,
+  cy: 60,
+  r: 50,
+  style: {
+    stroke: 'rgb(120,120,20)',
+    strokeWidth: 4,
+    fill: 'rgb(230,230,150)'
   }
 }

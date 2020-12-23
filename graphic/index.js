@@ -8,6 +8,9 @@ import Sector from './sector.js'
 import Heart from './heart.js'
 import RectSvg from './rect-svg.js'
 import LineSvg from './line-svg.js'
+import CircleSvg from './circle-svg.js'
+import EllipseSvg from './ellipse-svg.js'
+import PolyType from './polyType.js'
 export {
   Line,
   Rect,
@@ -18,5 +21,8 @@ export {
   Sector,
   Heart,
   RectSvg,
-  LineSvg
+  LineSvg,
+  CircleSvg,
+  EllipseSvg,
+  PolyType
 }

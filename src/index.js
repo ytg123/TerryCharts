@@ -9,7 +9,10 @@ import {
   Sector,
   Heart,
   RectSvg,
-  LineSvg
+  LineSvg,
+  CircleSvg,
+  EllipseSvg,
+  PolyType
 } from '../graphic/index.js'
 import { v4 as uuidv4 } from 'uuid'
 class TerryCharts {
@@ -60,6 +63,7 @@ class TerryCharts {
       this.svgDom = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
       this.svgDom.setAttribute('width', this.options.width || 200)
       this.svgDom.setAttribute('height', this.options.height || 200)
+      this.svgDom.setAttribute('viewBox', `0 0 400 400`)
     }
 
   }
@@ -86,9 +90,24 @@ class TerryCharts {
   }
 
   circle () {
-    new Circle(this.ctx, this.options)
-  }
+    if (this.rendererType === 'canvas') {
+      new Circle(this.ctx, this.options)
+    }
+    if (this.rendererType === 'svg') {
+      new CircleSvg(this.dom, this.svgDom, this.options)
+    }
 
+  }
+  ellipse () {
+    if (this.rendererType === 'svg') {
+      new EllipseSvg(this.dom, this.svgDom, this.options)
+    }
+  }
+  polySide () {
+    if (this.rendererType === 'svg') {
+      new PolyType(this.dom, this.svgDom, this.options)
+    }
+  }
   bezierCurve () {
     new BezierCurve(this.ctx, this.options)
   }

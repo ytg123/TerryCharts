@@ -558,30 +558,59 @@
   var ReacSvg = function ReacSvg(dom, svgDom, opts) {
     classCallCheck(this, ReacSvg);
 
-    this.options = opts || {};
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', this.options.name);
-    svg.setAttribute('width', this.options.width || 200);
-    svg.setAttribute('height', this.options.height || 200);
-    svg.setAttribute('style', this.options.style);
-    svg.setAttribute('x', this.options.x);
-    svg.setAttribute('y', this.options.y);
-    svg.setAttribute('rx', this.options.rx);
-    svg.setAttribute('ry', this.options.ry);
-    svgDom.appendChild(svg);
+    this.options = opts || {}; // const svg = document.createElementNS('http://www.w3.org/2000/svg', this.options.name)
+    // svg.setAttribute('width', this.options.width || 200)
+    // svg.setAttribute('height', this.options.height || 200)
+    // svg.setAttribute('style', this.options.style)
+    // svg.setAttribute('x', this.options.x)
+    // svg.setAttribute('y', this.options.y)
+    // svg.setAttribute('rx', this.options.rx)
+    // svg.setAttribute('ry', this.options.ry)
+
+    var svg = "\n    <".concat(this.options.name, " \n      width = '").concat(this.options.width, "'\n      height = '").concat(this.options.height, "'\n      x = '").concat(this.options.x, "' \n      y = '").concat(this.options.y, "'\n      rx = '").concat(this.options.rx, "' \n      ry = '").concat(this.options.ry, "'\n      style = '").concat(this.options.style, "'\n    ></").concat(this.options.name, ">\n    \n    ");
+    svgDom.innerHTML = svg;
     dom.appendChild(svgDom);
   };
 
   var LineSvg = function LineSvg(dom, svgDom, opts) {
     classCallCheck(this, LineSvg);
 
+    this.options = opts || {}; // const svg = document.createElementNS('http://www.w3.org/2000/svg', this.options.name)
+    // svg.setAttribute('x1', this.options.x1)
+    // svg.setAttribute('y1', this.options.y1)
+    // svg.setAttribute('x2', this.options.x2)
+    // svg.setAttribute('y2', this.options.y2)
+    // svg.setAttribute('style', this.options.style)
+
+    var svg = "\n      <".concat(this.options.name, " \n        x1 = '").concat(this.options.x1, "' \n        y1 = '").concat(this.options.y1, "'\n        x2 = '").concat(this.options.x2, "' \n        y2 = '").concat(this.options.y2, "'\n        style = '").concat(this.options.style, "'\n      ></").concat(this.options.name, ">\n    ");
+    svgDom.innerHTML = svg;
+    dom.appendChild(svgDom);
+  };
+
+  var CircleSvg = function CircleSvg(dom, svgDom, opts) {
+    classCallCheck(this, CircleSvg);
+
     this.options = opts || {};
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', this.options.name);
-    svg.setAttribute('x1', this.options.x1);
-    svg.setAttribute('y1', this.options.y1);
-    svg.setAttribute('x2', this.options.x2);
-    svg.setAttribute('y2', this.options.y2);
-    svg.setAttribute('style', this.options.style);
-    svgDom.appendChild(svg);
+    var svg = "\n      <".concat(this.options.name, " \n        cx = '").concat(this.options.cx, "' \n        cy = '").concat(this.options.cy, "'\n        r = '").concat(this.options.r, "' \n        stroke = '").concat(this.options.style.stroke, "'\n        stroke-width = '").concat(this.options.style.strokeWidth, "'\n        fill = '").concat(this.options.style.fill, "'\n      ></").concat(this.options.name, ">\n    ");
+    svgDom.innerHTML = svg;
+    dom.appendChild(svgDom);
+  };
+
+  var EllipseSvg = function EllipseSvg(dom, svgDom, opts) {
+    classCallCheck(this, EllipseSvg);
+
+    this.options = opts || {};
+    var svg = "\n    <".concat(this.options.name, " \n      cx = '").concat(this.options.cx, "' \n      cy = '").concat(this.options.cy, "'\n      rx = '").concat(this.options.rx, "' \n      ry = '").concat(this.options.ry, "'\n      style = '").concat(this.options.style, "'\n    ></").concat(this.options.name, ">\n    \n    ");
+    svgDom.innerHTML = svg;
+    dom.appendChild(svgDom);
+  };
+
+  var PolyType = function PolyType(dom, svgDom, opts) {
+    classCallCheck(this, PolyType);
+
+    this.options = opts || {};
+    var svg = "\n    <".concat(this.options.name, " \n      points = '").concat(this.options.points, "' \n      style = '").concat(this.options.style, "'\n    ></").concat(this.options.name, ">\n    \n    ");
+    svgDom.innerHTML = svg;
     dom.appendChild(svgDom);
   };
 
@@ -686,6 +715,7 @@
         this.svgDom = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         this.svgDom.setAttribute('width', this.options.width || 200);
         this.svgDom.setAttribute('height', this.options.height || 200);
+        this.svgDom.setAttribute('viewBox', "0 0 400 400");
       }
     }
 
@@ -719,7 +749,27 @@
     }, {
       key: "circle",
       value: function circle() {
-        new Circle(this.ctx, this.options);
+        if (this.rendererType === 'canvas') {
+          new Circle(this.ctx, this.options);
+        }
+
+        if (this.rendererType === 'svg') {
+          new CircleSvg(this.dom, this.svgDom, this.options);
+        }
+      }
+    }, {
+      key: "ellipse",
+      value: function ellipse() {
+        if (this.rendererType === 'svg') {
+          new EllipseSvg(this.dom, this.svgDom, this.options);
+        }
+      }
+    }, {
+      key: "polySide",
+      value: function polySide() {
+        if (this.rendererType === 'svg') {
+          new PolyType(this.dom, this.svgDom, this.options);
+        }
       }
     }, {
       key: "bezierCurve",
