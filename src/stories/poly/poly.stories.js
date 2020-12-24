@@ -20,6 +20,6 @@ export const Polygonsvg = Template.bind({});
 Polygonsvg.args = {
   name: 'polygon',
   rednerer: 'svg',
-  points: '100,10 40,198 190,78 10,78 160,198',
+  points: '30,0 300,0 300,10 300,300 0,300 0,180 30,160 30,100 0,80 0,30',
   style: 'fill:orange;stroke:black;stroke-width:1;fill-rule:evenodd;'
 }
