@@ -42,7 +42,7 @@
 				<defs>
 					<path
 						id="header-path"
-						d="M0 5 L300 5 L400 40 L600 40 L700 5 L1200 0"
+						d="M0 5 L400 5 L500 30 L700 30 L800 5 L1200 0"
 						fill="none"
 					></path>
 					
@@ -55,7 +55,7 @@
 						>
 							<animateMotion
 								dur="3s"
-								path="M0 5 L300 5 L500 60 L700 60 L900 5 L1200 0"
+								path="M0 5 L400 5 L500 30 L700 30 L800 5 L1200 0"
 								rotate="auto"
 								repeatCount="indefinite"
 							></animateMotion>
@@ -91,34 +91,58 @@
 			    </circle>
 			</svg>
 		</div>
-		<svg width="600px" height="100px" viewBox="0 0 600 100">
-		    <line x1="10" y1="90" x2="50" y2="90"  
-		    stroke="#0072FF" stroke-width="12" stroke-linecap="round">
-		        <animate attributeName="x1" begin="0s" 
-		        values="10 ;10  ;400;450;400;10  ;10 ;" 
-		        dur="4s" repeatCount="indefinite"></animate>
-		        <animate attributeName="x2" begin="0s" 
-		        values="50;100;490;490;490;100;50;" 
-		        dur="4s" repeatCount="indefinite"></animate>
-		    </line>
-		</svg>
+		<div>
+			<svg width="600px" height="100px" viewBox="0 0 600 100">
+			    <line x1="10" y1="90" x2="50" y2="90"  
+			    stroke="#0072FF" stroke-width="12" stroke-linecap="round">
+			        <animate attributeName="x1" begin="0s" 
+			        values="10 ;10  ;400;450;400;10  ;10 ;" 
+			        dur="4s" repeatCount="indefinite"></animate>
+			        <animate attributeName="x2" begin="0s" 
+			        values="50;100;490;490;490;100;50;" 
+			        dur="4s" repeatCount="indefinite"></animate>
+			    </line>
+			</svg>
+		</div>
 		
-		<svg width="600px" height="600px" viewBox="0 0 500 500">
-		    <path id="bezepath" stroke="#FF0000" 
-		    stroke-width="1"  fill="none" 
-		    d="M 10,490 C 100,200 400,300 490,10 C 400,300 100,200 10,490">
-		 
-		    </path>
-		    <circle r="10" fill="#0072FF" cx="0" cy="0">
-		       <animateMotion 
-		       path="M 10,490 C 100,200 400,300 490,10 C 400,300 100,200 10,490 " 
-		       rotate="auto" calcMode="apline"
-		       keyTimes="0;0.5;1" 
-		       keySplines=".2 .6 .8 .4;.8 .4 .2 .6"  
-		       begin="0s" dur="5s" repeatCount="indefinite">
-		       </animateMotion>
-		    </circle>
-		</svg>
+		<div>
+			<svg width="600px" height="600px" viewBox="0 0 500 500">
+			    <path id="bezepath" stroke="#FF0000" 
+			    stroke-width="1"  fill="none" 
+			    d="M 10,490 C 100,200 400,300 490,10 C 400,300 100,200 10,490">
+			 
+			    </path>
+			    <circle r="10" fill="#0072FF" cx="0" cy="0">
+			       <animateMotion 
+			       path="M 10,490 C 100,200 400,300 490,10 C 400,300 100,200 10,490 " 
+			       rotate="auto" calcMode="apline"
+			       keyTimes="0;0.5;1" 
+			       keySplines=".2 .6 .8 .4;.8 .4 .2 .6"  
+			       begin="0s" dur="5s" repeatCount="indefinite">
+			       </animateMotion>
+			    </circle>
+			</svg>
+		</div>
+		<div>
+			<svg width="600px" height="300px">
+				<polygon
+					points = '30,0 280,0 300,20 300,300 0,300 0,180 30,160 30,100 0,80 0,30',
+					style = 'fill:transparent;stroke:#f50;stroke-width:1;fill-rule:evenodd;'
+				></polygon>
+				<polyline
+					points = '170,0 280,0 300,20 300,120'
+					style = 'fill:transparent;stroke:rgba(61,253,255,1);stroke-width:2;'
+				>
+					<animate
+						attributeName="stroke"
+						values="rgba(61,253,255,.2);rgba(61,253,255,.5);rgba(61,253,255,.8);rgba(61,253,255,1)"
+						dur="1s"
+						begin="0s"
+						repeatCount="indefinite"
+					></animate>
+				</polyline>
+			</svg>
+		</div>
 	</div>
   <div id="box"></div>
   <script>
