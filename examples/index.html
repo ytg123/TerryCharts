@@ -7,15 +7,119 @@
   <title>TerryCharts</title>
   <script src="../dist/terry.charts.umd.js"></script>
   <style>
+	  html,body{
+		  margin: 0;
+		  padding: 0;
+		  background-color: #999;
+		  display: flex;
+		  justify-content: flex-start;
+		  align-items: center;
+		  flex-direction: column;
+	  }
     #box {
       width: 500px;
       height: 500px;
       margin: 30px auto;
     }
+	.header{
+		width: 1200px;
+		height: 60px;
+	}
+	.circle{
+		width: 200px;
+		height: 200px;
+	}
   </style>
 </head>
 
 <body>
+	<div class="example">
+		<h1>各种实例</h1>
+		<h2>SVG:</h2>
+		<div class="header">
+			<svg width="100%" height="60px" viewport="" viewbox="0 0 1200 60">
+				
+				<defs>
+					<path
+						id="header-path"
+						d="M0 5 L300 5 L400 40 L600 40 L700 5 L1200 0"
+						fill="none"
+					></path>
+					
+					<mask id="maskFlay">
+						<circle
+							cx="0"
+							cy="0"
+							r="20"
+							fill="yellow"
+						>
+							<animateMotion
+								dur="3s"
+								path="M0 5 L300 5 L500 60 L700 60 L900 5 L1200 0"
+								rotate="auto"
+								repeatCount="indefinite"
+							></animateMotion>
+						</circle>
+					</mask>
+				</defs>
+				<use
+					href="#header-path"
+					stroke-width="2"
+					stroke="blue"
+				></use>
+				<use 
+					href="#header-path"
+					stroke-width="2"
+					stroke="#aaffff"
+					mask="url(#maskFlay)"
+				></use>
+			</svg>
+		</div>
+		<div class="circle">
+			<svg width="100%" height="100%">
+			    <circle  r="50" cx="120" cy="120" 
+			    stroke="#8194AB" stroke-width="8" fill="none">
+			    </circle>
+			    <circle   r="50" cx="120" cy="120" 
+			    stroke="#036DF0" stroke-width="8" 
+			    fill="none" stroke-dasharray="40,315" >
+			        <animateTransform attributeName="transform" 
+			        type="rotate" from="0 120 120" 
+			        to="360 120 120" begin="0s" dur="2s" 
+			        repeatCount="indefinite">
+			        </animateTransform>
+			    </circle>
+			</svg>
+		</div>
+		<svg width="600px" height="100px" viewBox="0 0 600 100">
+		    <line x1="10" y1="90" x2="50" y2="90"  
+		    stroke="#0072FF" stroke-width="12" stroke-linecap="round">
+		        <animate attributeName="x1" begin="0s" 
+		        values="10 ;10  ;400;450;400;10  ;10 ;" 
+		        dur="4s" repeatCount="indefinite"></animate>
+		        <animate attributeName="x2" begin="0s" 
+		        values="50;100;490;490;490;100;50;" 
+		        dur="4s" repeatCount="indefinite"></animate>
+		    </line>
+		</svg>
+		
+		<svg width="600px" height="600px" viewBox="0 0 500 500">
+		    <path id="bezepath" stroke="#FF0000" 
+		    stroke-width="1"  fill="none" 
+		    d="M 10,490 C 100,200 400,300 490,10 C 400,300 100,200 10,490">
+		 
+		    </path>
+		    <circle r="10" fill="#0072FF" cx="0" cy="0">
+		       <animateMotion 
+		       path="M 10,490 C 100,200 400,300 490,10 C 400,300 100,200 10,490 " 
+		       rotate="auto" calcMode="apline"
+		       keyTimes="0;0.5;1" 
+		       keySplines=".2 .6 .8 .4;.8 .4 .2 .6"  
+		       begin="0s" dur="5s" repeatCount="indefinite">
+		       </animateMotion>
+		    </circle>
+		</svg>
+	</div>
   <div id="box"></div>
   <script>
     let dom = document.getElementById('box')
@@ -116,24 +220,24 @@
     // }
     // TerryCharts.init(dom, options).bezierCurve()  
     // star  cx cy 圆心坐标 n 几星 r 半径 r0 内半径
-    let options = {
-      shape: {
-        cx: 180,
-        cy: 40,
-        n: 5,
-        r: 20,
-        r0: 15
-      },
-      style: {
-        stroke: '#f50',
-        fill: 'pink'
-      },
-      animate: {
-        show: true,
-        rotate: 40
-      }
-    }
-    TerryCharts.init(dom, options).star()
+    // let options = {
+    //   shape: {
+    //     cx: 180,
+    //     cy: 40,
+    //     n: 5,
+    //     r: 20,
+    //     r0: 15
+    //   },
+    //   style: {
+    //     stroke: '#f50',
+    //     fill: 'pink'
+    //   },
+    //   animate: {
+    //     show: true,
+    //     rotate: 40
+    //   }
+    // }
+    // TerryCharts.init(dom, options).star()
     //rose cx cy 圆心坐标 r 半径  k 玫瑰线参数 n 花瓣数
     // let options = {
     //   shape: {
@@ -252,16 +356,18 @@
 
 
     //svg
-    // let options = {
-    //   name: 'rect',
-    //   rednerer: 'svg',
-    //   x: 0,
-    //   y: 0,
-    //   rx: 40,
-    //   ry: 40,
-    //   style: `fill:rgb(0,0,255);stroke-width:2;stroke:rgb(255,234,10);fill-opacity: 0.4;stroke-opacity: 0.3;opacity: 0.5;`
-    // }
-    // TerryCharts.init(dom, options)
+    let options = {
+	  width: 200,
+	  height: 200,
+      name: 'rect',
+      rednerer: 'svg',
+      x: 0,
+      y: 0,
+      rx: 40,
+      ry: 40,
+      style: `fill:rgb(0,0,255);stroke-width:2;stroke:rgb(255,234,10);fill-opacity: 0.4;stroke-opacity: 0.3;opacity: 0.5;`
+    }
+    TerryCharts.init(dom, options).rect()
   </script>
 </body>
 
