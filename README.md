@@ -2,7 +2,7 @@
  * @Author: yangtengguang 18734153794@163.com
  * @Date: 2022-06-26 21:31:50
  * @LastEditors: yangtengguang 18734153794@163.com
- * @LastEditTime: 2022-06-26 21:33:09
+ * @LastEditTime: 2022-06-26 21:47:02
  * @FilePath: \TerryCharts\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -17,6 +17,8 @@ A framework for building Web visualization
 examples:https://ytg123.github.io/TerryCharts/examples/index.html
 
 合并分支测试
+
+git merge 分支名
 
 启动项目
 
